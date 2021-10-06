@@ -1,3 +1,5 @@
+import { FETCH_START } from "../actions";
+
 const initialState = {
   meal: {
     recipeName: "Shrimp Pasta",
@@ -10,6 +12,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case (FETCH_START): 
+    return({
+        ...state,
+        meal: {},
+        isFetching: true,
+        errorMessage: ''
+    }) 
     default:
       return state;
   }

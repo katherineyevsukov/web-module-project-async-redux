@@ -1,19 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getMeal } from './../actions'
 
 const Recipe = (props) => {
-const { recipeName, recipeImg, recipeInst } = props.meal
+  const { recipeName, recipeImg, recipeInst } = props.meal;
 
-    return (
-        <div>
-    <h2>{recipeName}</h2>
-    <img width="400px" src={recipeImg}></img>
-    <p>{recipeInst}</p>
+  useEffect(() => {
+    props.getMeal()
+  }, []) 
+
+  return (
+    <div>
+      <h2>{recipeName}</h2>
+      <img width="400px" src={recipeImg}></img>
+      <p>{recipeInst}</p>
     </div>
-    )
-}
+  );
+};
 const mapStateToProps = (state) => {
-   return {meal: state.meal}
-}
+  return { meal: state.meal };
+};
 
-export default connect(mapStateToProps)(Recipe)
+export default connect(mapStateToProps, { getMeal })(Recipe);
