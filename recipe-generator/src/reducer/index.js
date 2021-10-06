@@ -1,4 +1,4 @@
-import { FETCH_START } from "../actions";
+import { FETCH_START, FETCH_SUCCESS } from "../actions";
 
 const initialState = {
   meal: {
@@ -11,6 +11,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+    console.log(state)
   switch (action.type) {
     case (FETCH_START): 
     return({
@@ -19,6 +20,12 @@ const reducer = (state = initialState, action) => {
         isFetching: true,
         errorMessage: ''
     }) 
+    case(FETCH_SUCCESS):
+    return({
+        ...state,
+        meal: action.payload,
+        isFetching: false
+    })
     default:
       return state;
   }
